@@ -177,6 +177,18 @@
             color: #fff;
         }
 
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 10px;
+            color: #0a3d62;
+            font-size: 14px;
+        }
+
+        .footer-link {
+            color: #0a3d62; text-decoration: none; font-weight: bold;
+        }
+
         @media (max-width: 768px) {
 
             th,
@@ -389,6 +401,12 @@
     {{-- <div class="pagination">{{ $todos->links() }}</div> --}}
 
 </body>
+
+<footer class="footer">
+    Powered by <a href="https://cloudinary.com" target="_blank"
+        class="footer-link">Cloudinary</a>
+</footer>
+
 
 <script>
     // Fungsi hashing sederhana → hasilkan angka dari string
