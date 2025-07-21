@@ -380,6 +380,7 @@
                     <td class="todo-actions">
                         <a href="/todos/{{ $todo->id }}/edit" class="button" style="background-color:#ffe08a;">✏️
                             Edit</a>
+                        <br>
                         <form action="/todos/{{ $todo->id }}" method="POST"
                             onsubmit="return confirm('Yakin mau hapus?')">
                             @csrf
