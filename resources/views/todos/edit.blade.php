@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ asset('ikon_todos.ico') }}">
+    <title>Edit To-Do</title>
+    <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
+</head>
+
+<body>
+    <div class="edit-container">
+        <h2>✏️ Edit To-Do</h2>
+
+        @if ($errors->any())
+            <div>
+                <ul class="error-list">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('todos.update', $todo->id) }}">
+            @csrf
+            @method('PUT')
+
+            <label for="title">Judul:</label>
+            <input type="text" id="title" name="title" value="{{ old('title', $todo->title) }}" required>
+            @error('title')
+                <div class="error-text">{{ $message }}</div>
+            @enderror
+
+            <label for="description">Deskripsi:</label>
+            <input type="text" id="description" name="description"
+                value="{{ old('description', $todo->description) }}">
+            @error('description')
+                <div class="error-text">{{ $message }}</div>
+            @enderror
+
+            <label for="is_done">Status:</label>
+            <select id="is_done" name="is_done">
+                <option value="0" {{ old('is_done', $todo->is_done) == 0 ? 'selected' : '' }}>Not Completed
+                </option>
+                <option value="1" {{ old('is_done', $todo->is_done) == 1 ? 'selected' : '' }}>Completed</option>
+            </select>
+            @error('is_done')
+                <div class="error-text">{{ $message }}</div>
+            @enderror
+
+            <label>Lampiran:</label>
+            <button type="button" id="upload_widget" class="button">Upload Lampiran (Cloudinary)</button>
+
+            <input type="hidden" name="attachment_url" id="attachment_url"
+                value="{{ old('attachment_url', $todo->attachment) }}">
+            <input type="hidden" name="attachment_public_id" id="attachment_public_id"
+                value="{{ old('attachment_public_id', $todo->attachment_public_id) }}">
+
+            @error('attachment_url')
+                <div class="error-text">{{ $message }}</div>
+            @enderror
+
+            @if ($todo->attachment)
+                <p>Lampiran saat ini:</p>
+                <a href="{{ $todo->attachment }}" target="_blank">{{ basename($todo->attachment) }}</a>
+                @if (Str::endsWith($todo->attachment, ['jpg', 'jpeg', 'png', 'webp']))
+                    <br><img src="{{ $todo->attachment }}" alt="Lampiran" style="max-width:200px; margin-top:10px;">
+                @endif
+            @endif
+
+            <button type="submit" class="button">Update</button>
+        </form>
+
+
+        <a href="/todos" class="back-link">← Kembali ke daftar</a>
+    </div>
+
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var myWidget = cloudinary.createUploadWidget({
+            cloudName: 'dkixchlli', // Ganti sesuai cloud kamu
+            uploadPreset: 'TodosPublicNew' // Preset yang kamu atur di Cloudinary
+        }, (error, result) => {
+            if (!error && result && result.event === "success") {
+                console.log('File berhasil diupload ke Cloudinary:', result.info);
+                document.getElementById('attachment_url').value = result.info.secure_url;
+            }
+        });
+
+        document.getElementById("upload_widget").addEventListener("click", function() {
+            myWidget.open();
+        }, false);
+    </script>
+
+
+</body>
+
+</html>
