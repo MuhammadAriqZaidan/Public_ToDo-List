@@ -66,12 +66,12 @@
         }
 
         th {
-            background-color: #FFF5C3;
+            background-color: #9ca3af;
         }
 
         thead th {
-            border-bottom: 2px solid #e0b800;
-            background-color: #FFF5C3
+            border-bottom: 2px solid #737373;
+            background-color: #9ca3af
         }
 
         .done {
