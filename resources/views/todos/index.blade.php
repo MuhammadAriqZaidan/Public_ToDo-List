@@ -71,7 +71,7 @@
 
         thead th {
             border-bottom: 2px solid #737373;
-            background-color: #9ca3af
+            background-color: #848a94
         }
 
         .done {
