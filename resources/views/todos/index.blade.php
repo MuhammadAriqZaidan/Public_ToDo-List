@@ -380,7 +380,7 @@
                     </td>
 
                     <td class="todo-actions">
-                        <a href="/todos/{{ $todo->id }}/edit" class="button" style="background-color:#ffe08a;">✏️
+                        <a href="/todos/{{ $todo->id }}/edit" class="button" style="background-color:#FFD60A;">✏️
                             Edit</a>
                         <br>
                         <form action="/todos/{{ $todo->id }}" method="POST"
