@@ -66,7 +66,12 @@
         }
 
         th {
-            background-color: #fef8d0;
+            background-color: #FFF5C3;
+        }
+
+        thead th {
+            border-bottom: 2px solid #e0b800;
+            background-color: #FFF5C3
         }
 
         .done {
@@ -81,6 +86,13 @@
 
         form {
             display: inline;
+        }
+
+        .todo-actions {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .todo-actions a,
@@ -380,7 +392,7 @@
                     </td>
 
                     <td class="todo-actions">
-                        <a href="/todos/{{ $todo->id }}/edit" class="button" style="background-color:#FFD60A;">✏️
+                        <a href="/todos/{{ $todo->id }}/edit" class="button">✏️
                             Edit</a>
                         <br>
                         <form action="/todos/{{ $todo->id }}" method="POST"
@@ -432,6 +444,15 @@
         const color = hashStringToColor(name);
         el.style.color = color;
         el.style.fontWeight = 'bold';
+    });
+
+    document.querySelectorAll('td[data-label="Deadline"]').forEach(td => {
+        const deadline = new Date(td.textContent.trim());
+        const today = new Date();
+        if (deadline < today && !isNaN(deadline)) {
+            td.style.color = '#d90429';
+            td.style.fontWeight = 'bold';
+        }
     });
 </script>
 
