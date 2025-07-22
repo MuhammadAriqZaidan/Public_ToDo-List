@@ -34,7 +34,7 @@
 
         .button {
             padding: 0.5rem 1rem;
-            background-color: #f5e663;
+            background-color: #FFD60A;
             border: none;
             border-radius: 8px;
             font-weight: bold;
@@ -186,7 +186,9 @@
         }
 
         .footer-link {
-            color: #0a3d62; text-decoration: none; font-weight: bold;
+            color: #0a3d62;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
@@ -404,8 +406,7 @@
 </body>
 
 <footer class="footer">
-    Powered by <a href="https://cloudinary.com" target="_blank"
-        class="footer-link">Cloudinary</a>
+    Powered by <a href="https://cloudinary.com" target="_blank" class="footer-link">Cloudinary</a>
 </footer>
 
 

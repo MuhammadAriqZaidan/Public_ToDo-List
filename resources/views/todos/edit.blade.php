@@ -65,7 +65,7 @@
 
         .button {
             padding: 0.6rem 1.2rem;
-            background-color: #f5e663;
+            background-color: #FFD60A;
             border: none;
             border-radius: 8px;
             font-weight: bold;

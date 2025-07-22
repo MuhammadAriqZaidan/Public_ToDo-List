@@ -54,7 +54,7 @@ input[type="date"] {
 
 .button {
     padding: 0.6rem 1.2rem;
-    background-color: #f5e663;
+    background-color: #ffd60a;
     border: none;
     border-radius: 8px;
     font-weight: bold;
@@ -91,7 +91,7 @@ input[type="date"] {
     list-style: square inside;
 }
 
-span{
+span {
     color: red;
     size: 5px;
 }
