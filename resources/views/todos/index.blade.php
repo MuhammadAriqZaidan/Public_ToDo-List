@@ -345,20 +345,8 @@
                     <td data-label="Deskripsi">
                         {{ $todo->description ? Str::limit($todo->description, 100) : '-' }}
                     </td>
+
                     {{-- <td data-label="Lampiran">
-                        @if ($todo->attachment)
-                            @if (Str::startsWith($todo->attachment, ['http://', 'https://']))
-                                <a href="{{ $todo->attachment }}" target="_blank">📎 Lihat</a>
-                            @elseif ($todo->attachment && Str::endsWith($todo->attachment, ['jpg', 'jpeg', 'png', 'webp']))
-                                <br>
-                                <img src="{{ $todo->attachment }}" alt="Lampiran"
-                                    style="max-width:100px; margin-top:4px;">
-                            @endif
-                        @else
-                            -
-                        @endif
-                    </td> --}}
-                    <td data-label="Lampiran">
                         @if ($todo->attachment)
                             <a href="{{ $todo->attachment }}" target="_blank" title="{{ basename($todo->attachment) }}">
                                 📎 Lihat Lampiran
@@ -372,9 +360,29 @@
                         @else
                             -
                         @endif
+                    </td> --}}
+                    <td data-label="Lampiran">
+                        @if ($todo->attachment)
+                            @php
+                                $isImage = Str::endsWith($todo->attachment, ['jpg', 'jpeg', 'png', 'webp']);
+                            @endphp
+
+                            @if ($isImage)
+                                <a href="{{ $todo->attachment }}" target="_blank"
+                                    title="{{ basename($todo->attachment) }}">
+                                    <img src="{{ $todo->attachment }}" alt="Lampiran"
+                                        style="max-width:100px; margin-top:4px; border:1px solid #ccc; border-radius:4px;">
+                                </a>
+                            @else
+                                <a href="{{ $todo->attachment }}" target="_blank"
+                                    title="{{ basename($todo->attachment) }}">
+                                    📎 Lihat Lampiran
+                                </a>
+                            @endif
+                        @else
+                            -
+                        @endif
                     </td>
-
-
                     <td data-label="Pembuat" class="user-name">{{ $todo->user->name }}</td>
                     <td data-label="Status">
                         <form action="/todos/{{ $todo->id }}/toggle" method="POST" style="display:inline;">
